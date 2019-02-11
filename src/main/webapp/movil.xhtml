@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:x="http://fpdual.es/validador">
+
+<h:head>
+	<title>M&oacute;vil</title>
+</h:head>
+<h:body>
+	<h1>M&oacute;vil</h1>
+	<h:form id="Formulario">
+		<h:panelGrid columns="2" bgcolor="aqua">
+			<p:outputLabel for="marca" value="Marca:"></p:outputLabel>
+			<h:inputText label="marca" id="marca" value="#{movil.marca}" validator="#{movil.validarMarca}">
+			</h:inputText>
+			<p:outputLabel for="color" value="Color:"></p:outputLabel>
+			<h:inputText label="color" id="color" value="#{movil.color}" validator="#{movil.validarColor}">
+			</h:inputText>
+			<p:outputLabel for="so" value="SO:"></p:outputLabel>
+			<h:inputText label="so" id="so" value="#{movil.so}" validator="#{movil.validarSO}">
+			</h:inputText>
+			<p:outputLabel for="ram" value="RAM:"></p:outputLabel>
+			<h:inputText label="ram" id="ram" value="#{movil.ram}" validator="#{movil.validarRAM}">
+			</h:inputText>
+			<p:outputLabel for="version" value="Version:"></p:outputLabel>
+			<h:inputText label="version" id="version" value="#{movil.version}" validator="#{movil.validarVersion}">
+			</h:inputText>
+			<h:commandButton value="Submit" />
+		</h:panelGrid>
+		<h:messages warnStyle="color:green" errorStyle="color:red" infoStyle="color:blue"></h:messages>
+	</h:form>
+</h:body>
+</html>

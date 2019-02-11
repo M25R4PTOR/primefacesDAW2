@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:x="http://fpdual.es/validador">
+
+<h:head>
+	<title>League of Legends</title>
+</h:head>
+<h:body>
+	<h1>League of Legends</h1>
+	<h:form id="Formulario">
+		<h:panelGrid columns="2" bgcolor="aqua">
+			<p:outputLabel for="nombre" value="Marca:"></p:outputLabel>
+			<h:inputText label="nombre" id="nombre" value="#{lolVista.lol.nombre}">
+				<f:ajax/>
+			</h:inputText>
+			<p:outputLabel for="campeon" value="Campeón:"></p:outputLabel>
+			<h:inputText label="campeon" id="campeon" value="#{lolVista.lol.campeon}">
+				<f:ajax/>
+			</h:inputText>
+			<p:outputLabel for="posicion" value="Posición:"></p:outputLabel>
+			<h:inputText label="posicion" id="posicion" value="#{lolVista.lol.posicion}">
+				<f:ajax/>
+			</h:inputText>
+			<p:outputLabel for="elo" value="ELO:"></p:outputLabel>
+			<h:inputText label="elo" id="elo" value="#{lolVista.lol.elo}">
+				<f:ajax/>
+			</h:inputText>
+			<p:outputLabel for="liga" value="Liga:"></p:outputLabel>
+			<h:inputText label="liga" id="liga" value="#{lolVista.lol.liga}">
+				<f:ajax/>
+			</h:inputText>
+			<p:outputLabel for="promocion" value="Promoción:"></p:outputLabel>
+			<h:inputText label="promocion" id="promocion" value="#{lolVista.lol.promocion}">
+				<f:ajax/>
+			</h:inputText>
+			<p:outputLabel for="modalidad" value="Modalidad:"></p:outputLabel>
+			<h:inputText label="modalidad" id="modalidad" value="#{lolVista.lol.modalidad}" validator="#{lolVista.validarLOL}">
+			</h:inputText>
+			<h:commandButton value="Submit" />
+		</h:panelGrid>
+		<h:messages warnStyle="color:green" errorStyle="color:red" infoStyle="color:blue"></h:messages>
+	</h:form>
+</h:body>
+</html>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fpdual="http://xmlns.jcp.org/jsf/composite/fpdual">
+
+<h:head>
+	<title>Conversor y validador</title>
+</h:head>
+
+<h:body>
+	<h2>Conversor y validador EMAIL</h2>
+	<h:form>
+		<fpdual:email etiqueta="Prueba" valor="#{userData.email}" separador="#"></fpdual:email>
+		<br />
+		<h:commandButton value="submit" action="result" />
+	</h:form>
+	<hr />
+	<h2>Con patron .com</h2>
+	<h:form>
+		<fpdual:email etiqueta="Prueba"
+			patron="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.(com|net|org|edu)" valor="#{userData.email}"></fpdual:email>
+		<br />
+		<h:commandButton value="submit" action="result" />
+	</h:form>
+</h:body>
+</html>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:x="http://fpdual.es/validador">
+
+<composite:interface displayName="Componente para email">
+	<composite:attribute name="etiqueta" type="java.lang.String" required="true"></composite:attribute>
+	<composite:attribute name="patron" type="java.lang.String" required="false" default="^\S+@\S+\.\S+$"></composite:attribute>
+	<composite:attribute name="valor" required="false"></composite:attribute>
+	<composite:attribute name="separador" type="java.lang.String" required="false" default="@"></composite:attribute>
+</composite:interface>
+
+<composite:implementation>
+	<h:inputText id="inputCreado" label="#{cc.attrs.etiqueta}" value="#{cc.attrs.valor}">
+		<x:validadorEmail patron="#{cc.attrs.patron}"></x:validadorEmail>
+		<f:converter converterId="com.mkyong.EmailConversor" />
+		<f:attribute name="separador" value="#{cc.attrs.separador}"></f:attribute>
+	</h:inputText>
+	<h:message for="inputCreado" style="color:red" />
+</composite:implementation>
+</html>

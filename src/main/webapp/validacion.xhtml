@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fpdual="http://xmlns.jcp.org/jsf/composite/fpdual">
+
+<h:head>
+	<title>JSF tutorial</title>
+</h:head>
+
+<h:body>
+	<h2>h:validateLength Example</h2>
+
+	<h:form>
+		<h:inputText id="nameInput" value="#{validacion.nombre}"
+			label="nombre">
+			<f:validateLength minimum="5" maximum="8" />
+		</h:inputText>
+		<h:message for="nameInput" style="color:red" />
+
+	<h2>h:validateLongRange y h:validateDoubleRange Example</h2>
+
+		<h:inputText id="ageInput" value="#{validacion.salario}" label="edad" required="true">
+			<f:validateLongRange minimum="0" maximum="50000" />
+			<f:validateDoubleRange minimum = "2.555" maximum = "99.999" />
+		</h:inputText>
+		<h:message for="ageInput" style="color:red" />
+<!--
+	<h2>h:validateRegex Example</h2>
+	
+	<h:form>
+		<h:inputText id="emailInput" value="#{validacion.email}"
+			label="email">
+			<f:validateRegex pattern = "/\S+@\S+\.\S+/" />
+			<f:validateRegex pattern = "[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+			<f:validateRegex pattern = "[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.(com|net|org|edu)"/>
+			<f:validator validatorId = "com.mkyong.EmailValidator" /> 
+			<x:validadorEmail validatorId = "com.mkyong.EmailValidator"/>
+			<x:validadorEmail/>
+		</h:inputText>
+		<h:commandButton value="submit"/>
+		<h:message for="emailInput" style="color:red" />
+	</h:form>
+	
+	<h2>h:validateRegex Example2</h2>
+
+	<h:form>
+		<h:inputText id="emailInput2" value="#{validacion.email2}"
+			label="email2">
+			<f:validateRegex pattern = "/\S+@\S+\.\S+/" />
+			<f:validateRegex pattern = "[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+			<f:validateRegex pattern = "[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.(com|net|org|edu)"/>
+			<f:validator validatorId = "com.mkyong.EmailValidator" /> 
+			<x:validadorEmail validatorId = "com.mkyong.EmailValidator"/>
+			<x:validadorEmail patron="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.(com|net|org|edu)"/>
+		</h:inputText>
+		<h:commandButton value="submit"/>
+		<h:message for="emailInput2" style="color:red" />
+	</h:form>
+-->	
+	<h2>Ejemplo componente creado con patron por defecto</h2>
+	
+		<fpdual:email etiqueta="Prueba"></fpdual:email>
+	
+	<h2>Ejemplo componente creado con patron nuevo</h2>
+	
+	
+		<fpdual:email etiqueta="Prueba" patron="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.(com|net|org|edu)"></fpdual:email>
+		<br/>
+		<h:commandButton value="submit" />
+	</h:form>
+</h:body>
+</html>

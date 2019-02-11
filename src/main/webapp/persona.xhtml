@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:x="http://fpdual.es/validador">
+
+<h:head>
+	<title>Persona</title>
+</h:head>
+<h:body>
+	<h1>Persona</h1>
+	<h:form id="Formulario">
+		<h:panelGrid columns="2" bgcolor="aqua">
+			<p:outputLabel for="Nombre" value="Nombre:"></p:outputLabel>
+			<h:inputText label="Nombre" id="Nombre" value="#{persona.nombre}">
+				<f:attribute name="apellido1" value="#{apellido1}"></f:attribute>
+				<f:attribute name="apellido2" value="#{apellido2}"></f:attribute>
+				<x:validadorPersonaNombre></x:validadorPersonaNombre>
+			</h:inputText>
+			<p:outputLabel for="Apellido1" value="Apellido 1:"></p:outputLabel>
+			<h:inputText label="Apellido1" id="Apellido1" value="#{persona.apellido1}" binding="#{apellido1}">
+				<x:validadorPersonaApellido1></x:validadorPersonaApellido1>
+			</h:inputText>
+			<p:outputLabel for="Apellido2" value="Apellido 2:"></p:outputLabel>
+			<h:inputText label="Apellido2" id="Apellido2" value="#{persona.apellido2}" binding="#{apellido2}">
+				<x:validadorPersonaApellido2></x:validadorPersonaApellido2>
+			</h:inputText>
+			<p:outputLabel for="Edad" value="Edad:"></p:outputLabel>
+			<h:inputText label="Edad" id="Edad" value="#{persona.edad}">
+				<x:validadorPersonaEdad></x:validadorPersonaEdad>
+			</h:inputText>
+			<p:outputLabel for="Sexo" value="Sexo:"></p:outputLabel>
+			<h:inputText label="Sexo" id="Sexo" value="#{persona.sexo}">
+				<x:validadorPersonaSexo></x:validadorPersonaSexo>
+			</h:inputText>
+			<p:outputLabel for="Aficion" value="Aficion:"></p:outputLabel>
+			<h:inputText label="Aficion" id="Aficion" value="#{persona.aficion}" validator="#{persona.validarAficion}">
+				<!-- <x:validadorPersonaAficion></x:validadorPersonaAficion> -->
+			</h:inputText>
+			<h:commandButton value="submit" />
+		</h:panelGrid>
+		<h:messages warnStyle="color:green" errorStyle="color:red" infoStyle="color:blue"></h:messages>
+	</h:form>
+</h:body>
+</html>

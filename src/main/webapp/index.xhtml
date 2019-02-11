@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+<h:body>
+	<h:form>
+		<p:growl id="messages" />
+
+		<p:menubar>
+			<p:submenu label="File" icon="pi pi-file">
+				<p:submenu label="New" icon="pi pi-briefcase">
+					<p:menuitem value="Project" url="#" />
+					<p:menuitem value="Other" url="#" />
+				</p:submenu>
+				<p:menuitem value="Open" url="#" />
+				<p:separator />
+				<p:menuitem value="Quit" url="#" />
+			</p:submenu>
+
+			<p:submenu label="Edit" icon="pi pi-pencil">
+				<p:menuitem value="Undo" url="#" icon="pi pi-angle-double-left" />
+				<p:menuitem value="Redo" url="#" icon="pi pi-angle-double-right" />
+			</p:submenu>
+
+			<p:submenu label="Help" icon="pi pi-question">
+				<p:menuitem value="Contents" url="#" />
+				<p:submenu label="Search" icon="pi pi-search">
+					<p:submenu label="Text">
+						<p:menuitem value="Workspace" url="#" />
+					</p:submenu>
+					<p:menuitem value="File" url="#" />
+				</p:submenu>
+			</p:submenu>
+
+			<p:submenu label="Actions" icon="pi pi-cog">
+				<p:submenu label="Ajax" icon="pi pi-refresh">
+					<p:menuitem value="Save" action="#{menuView.save}"
+						icon="pi pi-save" update="messages" />
+					<p:menuitem value="Update" action="#{menuView.update}"
+						icon="pi pi-refresh" update="messages" />
+				</p:submenu>
+				<p:submenu label="Non-Ajax" icon="pi pi-clone">
+					<p:menuitem value="Delete" action="#{menuView.delete}"
+						icon="pi pi-times" update="messages" ajax="false" />
+				</p:submenu>
+			</p:submenu>
+
+			<p:menuitem value="Quit" url="http://www.primefaces.org"
+				icon="pi pi-times" />
+
+			<f:facet name="options">
+				<p:inputText style="margin:1px 10px 1px 1px;" placeholder="Search" />
+				<p:commandButton type="button" value="Logout" icon="pi pi-home" />
+			</f:facet>
+		</p:menubar>
+	</h:form>
+	<h:form>
+		<!--<p:fieldset legend="Login" toggleable="true" style="background-color:blue">-->
+		<p:panel header="Login" toggleable="true"
+			style="background-color:blue">
+			<h:panelGrid columns="2" bgcolor="aqua">
+				<p:outputLabel value="Usuario:"></p:outputLabel>
+				<p:inputText id="texto" widgetVar="texto" value="#{login.usuario}"></p:inputText>
+				<p:outputLabel value="Contraseña:"></p:outputLabel>
+				<p:password id="pass" widgetVar="pass" value="#{login.pass}"></p:password>
+				<p:commandButton id="boton" process="texto pass" value="Entrar"></p:commandButton>
+				<p:commandButton id="reiniciar" process="@form" value="Reiniciar"
+					type="reset"></p:commandButton>
+			</h:panelGrid>
+			<!--</p:fieldset>-->
+		</p:panel>
+	</h:form>
+	<p:tabView>
+		<p:tab title="Prueba I">
+			<h:panelGrid columns="2" cellpadding="10">
+				<p:outputLabel for="console" value="Basic:" />
+				<p:selectOneMenu id="console" value="#{selectOneMenuView.console}"
+					style="width:125px">
+					<f:selectItem itemLabel="Select One" itemValue="" />
+					<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
+					<f:selectItem itemLabel="PS4" itemValue="PS4" />
+					<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+				</p:selectOneMenu>
+				<p:outputLabel for="usuario" value="Usuario:" />
+				<p:selectOneMenu id="usuario" value="#{login.usuario}"
+					style="width:125px">
+					<f:selectItem itemLabel="Elige uno" itemValue="" />
+					<f:selectItem itemLabel="Manu" itemValue="Manu" />
+					<f:selectItem itemLabel="Yeyo" itemValue="Yeyo" />
+					<f:selectItem itemLabel="Monchu" itemValue="Monchu" />
+				</p:selectOneMenu>
+				<h:outputText value="Prueba sin lista" />
+			</h:panelGrid>
+		</p:tab>
+		<p:tab title="Prueba II">
+			<h:panelGrid columns="2" cellpadding="10">
+				<p:outputLabel for="car" value="Grouping: " />
+				<p:selectOneMenu id="car" value="#{selectOneMenuView.car}">
+					<f:selectItem itemLabel="Select One" itemValue="" />
+					<f:selectItems value="#{selectOneMenuView.cars}" />
+				</p:selectOneMenu>
+				<p:outputLabel for="coche" value="Coches: " />
+				<p:selectOneMenu id="coche" value="#{login.coche}">
+					<f:selectItem itemLabel="Elige uno" itemValue="" />
+					<f:selectItems value="#{login.coches}" />
+				</p:selectOneMenu>
+				<h:outputText value="Prueba con lista" />
+			</h:panelGrid>
+		</p:tab>
+		<p:tab title="Prueba III">
+			<h:panelGrid columns="2" cellpadding="10">
+				<p:outputLabel for="city" value="Editable: " />
+				<p:selectOneMenu id="city" value="#{selectOneMenuView.city}"
+					effect="fold" editable="true">
+					<f:selectItem itemLabel="Select One" itemValue="" />
+					<f:selectItems value="#{selectOneMenuView.cities}" />
+				</p:selectOneMenu>
+				<p:outputLabel for="ciudad" value="Ciudades: " />
+				<p:selectOneMenu id="ciudad" value="#{login.ciudad}" effect="fold"
+					editable="true">
+					<f:selectItem itemLabel="Elige uno" itemValue="" />
+					<f:selectItems value="#{login.ciudades}" />
+				</p:selectOneMenu>
+				<h:outputText value="Prueba 3" />
+			</h:panelGrid>
+		</p:tab>
+	</p:tabView>
+
+	<div style="height: 500px">
+		<h:form>
+			<p:growl id="msgs" showDetail="true" />
+
+			<p:dashboard id="board" model="#{dashboardView.model}">
+				<p:ajax event="reorder" listener="#{dashboardView.handleReorder}"
+					update="msgs" />
+
+				<p:panel id="sports" header="Sports">
+					<h:outputText value="Sports Content" />
+				</p:panel>
+
+				<p:panel id="finance" header="Finance">
+					<h:outputText value="Finance Content" />
+				</p:panel>
+
+				<p:panel id="lifestyle" header="Lifestyle">
+					<h:outputText value="Lifestyle Content" />
+				</p:panel>
+
+				<p:panel id="weather" header="Weather">
+					<h:outputText value="Weather Content" />
+				</p:panel>
+
+				<p:panel id="politics" header="Politics">
+					<h:outputText value="Politics Content" />
+				</p:panel>
+			</p:dashboard>
+
+			<div style="clear: both" />
+		</h:form>
+	</div>
+	<p:dock position="bottom">
+		<p:menuitem value="Home" icon="./imagenes/email.png"
+			url="index2.xhtml" />
+		<p:menuitem value="Music" icon="./imagenes/music.png" url="#" />
+		<p:menuitem value="Video" icon="./imagenes/video.png" url="#" />
+		<p:menuitem value="Email" icon="./imagenes/email.png" url="#" />
+		<p:menuitem value="Portfolio" icon="./imagenes/portfolio.png" url="#" />
+		<p:menuitem value="Link" icon="./imagenes/link.png" url="#" />
+		<p:menuitem value="RSS" icon="./imagenes/rss.png" url="#" />
+		<p:menuitem value="History" icon="./imagenes/history.png" url="#" />
+	</p:dock>
+
+	<p:dataTable var="coche" value="#{dtCoche.coches}">
+		<p:column headerText="Id">
+			<h:outputText value="#{coche.id}" />
+		</p:column>
+
+		<p:column headerText="Marca">
+			<h:outputText value="#{coche.marca}" />
+		</p:column>
+
+		<p:column headerText="Color">
+			<h:outputText value="#{coche.color}" />
+		</p:column>
+	</p:dataTable>
+	<br />
+	<h:form>
+		<p:dataTable id="coche" var="coche" value="#{dtCoche.coches}"
+			widgetVar="tablaCoches"
+			emptyMessage="No hay coches con el criterio dado" reflow="true"
+			filteredValue="#{dtCoche.cochesFiltrados}" draggableColumns="true"
+			draggableRows="true">
+			<f:facet name="header">
+				<p:outputPanel>
+					<h:outputText value="Buscar en todos los campos:" />
+					<p:inputText id="globalFilter" onkeyup="PF('tablaCoches').filter()"
+						style="width:150px" placeholder="Enter keyword" />
+
+					<p:commandButton id="toggler" type="button" value="Columns"
+						style="float:right" icon="pi pi-align-justify" />
+					<p:columnToggler datasource="coche" trigger="toggler" />
+
+					<div style="padding-top: 5px;">
+						<h:commandLink>
+							<p:graphicImage value="./imagenes/excel.png" width="24" />
+							<p:dataExporter type="xls" target="coche" fileName="Coches" />
+						</h:commandLink>
+
+						<h:commandLink>
+							<p:graphicImage value="./imagenes/pdf.png" width="24" />
+							<p:dataExporter type="pdf" target="coche" fileName="Coches" />
+						</h:commandLink>
+
+						<h:commandLink>
+							<p:graphicImage value="./imagenes/csv.png" width="24" />
+							<p:dataExporter type="csv" target="coche" fileName="Coches" />
+						</h:commandLink>
+
+						<h:commandLink>
+							<p:graphicImage value="./imagenes/xml.png" width="24" />
+							<p:dataExporter type="xml" target="coche" fileName="Coches" />
+						</h:commandLink>
+					</div>
+				</p:outputPanel>
+			</f:facet>
+
+			<p:column headerText="Id" filterBy="#{coche.id}"
+				footerText="contiene" filterMatchMode="contains"
+				sortBy="#{coche.id}">
+				<h:outputText value="#{coche.id}" />
+			</p:column>
+
+			<p:column headerText="Marca" filterBy="#{coche.marca}"
+				footerText="contiene" filterMatchMode="contains"
+				sortBy="#{coche.marca}">
+				<h:outputText value="#{coche.marca}" />
+			</p:column>
+
+			<p:column headerText="Color" filterBy="#{coche.color}"
+				footerText="in" filterMatchMode="in" sortBy="#{coche.color}">
+				<f:facet name="filter">
+					<p:selectCheckboxMenu label="Colors"
+						onchange="PF('tablaCoches').filter()" scrollHeight="150"
+						styleClass="custom-filter">
+						<f:selectItems value="#{dtCoche.colores}" />
+					</p:selectCheckboxMenu>
+				</f:facet>
+				<h:outputText value="#{coche.color}" />
+			</p:column>
+
+		</p:dataTable>
+	</h:form>
+</h:body>
+</html>

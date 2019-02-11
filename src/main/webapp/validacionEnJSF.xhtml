@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Validaci&oacute;n en JSF</title>
+</h:head>
+<h:body>
+	<h1>Validaci&oacute;n en JSF</h1>
+	<h:form id="Formulario">
+		<h:panelGrid columns="2" bgcolor="aqua">
+			<p:outputLabel for="Nombre" value="Nombre:"></p:outputLabel>
+			<h:inputText label="Nombre" id="Nombre" value="#{beanGeneralPruebas.nombre}">
+				<f:validateLength for="Nombre" minimum="5" maximum="25" />
+			</h:inputText>
+			<br />
+			<h:message for="Nombre" style="color:red" />
+			<p:outputLabel for="Edad" value="Edad:"></p:outputLabel>
+			<p:inputNumber label="Edad" id="Edad" value="#{beanGeneralPruebas.edad}" validatorMessage="Rango entre 0 y 100">
+				<f:validateLongRange for="Edad" minimum="0" maximum="100" />
+			</p:inputNumber>
+			<h:commandButton value="submit" action="result"/>
+		</h:panelGrid>
+		<h:messages style="color:blue"></h:messages>
+	</h:form>
+	<br/><hr/><br/>
+	<h:form id="Formulario2">
+		<h:panelGrid columns="2" bgcolor="aqua">
+			<p:outputLabel for="Renombre" value="Renombre:"></p:outputLabel>
+			<h:inputText label="Renombre" id="Renombre" value="#{beanGeneralPruebas.renombre}">
+				<f:validateBean/>
+			</h:inputText>
+			<br />
+			<h:message for="Renombre" style="color:red" />
+			<p:outputLabel for="Reedad" value="Reedad:"></p:outputLabel>
+			<p:inputNumber label="Reedad" id="Reedad" value="#{beanGeneralPruebas.reedad}">
+				<f:validateBean/>
+			</p:inputNumber>
+			<h:commandButton value="submit" action="result"/>
+		</h:panelGrid>
+		<h:messages style="color:blue"></h:messages>
+	</h:form>
+</h:body>
+</html>

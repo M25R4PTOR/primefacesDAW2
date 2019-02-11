@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+	<h:form id="todo">
+		<p:menubar>
+			<p:menuitem value="Añadir Juego" oncomplete="PF('anadir').show();"
+				update="todo:dialogoAnadir" id="menuAnadir" />
+			<p:menuitem value="Editar Juego" oncomplete="PF('editar').show();"
+				update="todo:dialogoEditar" id="menuEditar" />
+		</p:menubar>
+
+
+		<p:dialog header="Añadir Juego Nuevo" widgetVar="anadir"
+			showEffect="explode" hideEffect="bounce" id="dialogoAnadir">
+			<h:form id="formularioAnadir">
+				<h:panelGrid columns="2" bgcolor="aqua">
+					<p:outputLabel value="Nombre:"></p:outputLabel>
+					<p:inputText id="nombre" widgetVar="nombre"
+						value="#{controladorJuego.nuevo.nombre}">
+						<f:validateLength minimum = "3" maximum = "25" />
+					</p:inputText>
+
+					<p:outputLabel for="genero" value="Género:" />
+					<p:selectOneMenu id="genero"
+						value="#{controladorJuego.nuevo.genero}" effect="fold">
+						<f:selectItem itemLabel="Elige uno" itemValue="" />
+						<f:selectItems value="#{controladorJuego.generos}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel for="comentario" value="Comentario:" />
+					<p:inputTextarea id="comentario"
+						value="#{controladorJuego.nuevo.comentario}"></p:inputTextarea>
+
+					<p:outputLabel for="puntuacion" value="Puntuación:" />
+					<p:inputNumber id="puntuacion"
+						value="#{controladorJuego.nuevo.puntuacion}"></p:inputNumber>
+
+					<p:outputLabel for="precio" value="Precio:" />
+					<p:inputNumber id="precio" value="#{controladorJuego.nuevo.precio}">
+					</p:inputNumber>
+
+					<p:commandButton id="boton" process="@form"
+						update="todo:listaJuego" value="Insertar"
+						action="#{controladorJuego.añadirJuego}" validateClient="true"
+						oncomplete="PF('anadir').hide();"></p:commandButton>
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+
+		<p:dialog header="Editar Juegos" widgetVar="editar"
+			showEffect="explode" hideEffect="bounce" id="dialogoEditar">
+
+			<h:form id="form">
+
+				<p:fieldset legend="Lista de Juegos" toggleable="true"
+					style="background-color:blue">
+					<p:growl id="msgs" showDetail="true" />
+					<p:dataTable id="listaJuegoEditable" var="juego"
+						value="#{controladorJuego.juegos}" toggleable="true"
+						editable="true">
+						<p:ajax event="rowEdit" listener="#{controladorJuego.onRowEdit}"
+							update=":todo:form:msgs todo:listaJuego" />
+						<p:ajax event="rowEditCancel"
+							listener="#{controladorJuego.onRowCancel}"
+							update=":todo:form:msgs todo:listaJuego" />
+
+						<p:column headerText="Nombre">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{juego.nombre}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{juego.nombre}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column headerText="Género">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{juego.genero}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:selectOneMenu value="#{juego.genero}" style="width:100%">
+										<f:selectItems value="#{controladorJuego.generos}" var="man"
+											itemLabel="#{man}" itemValue="#{man}" />
+									</h:selectOneMenu>
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column headerText="Comentario">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{juego.comentario}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{juego.comentario}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column headerText="Puntuación">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{juego.puntuacion}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{juego.puntuacion}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column headerText="Precio">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{juego.precio}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{juego.precio}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column style="width:35px">
+							<p:rowEditor />
+						</p:column>
+					</p:dataTable>
+				</p:fieldset>
+			</h:form>
+		</p:dialog>
+		<br />
+		<br />
+		<p:fieldset legend="Lista de Juegos" toggleable="true"
+			style="background-color:blue">
+			<p:dataTable id="listaJuego" var="juego"
+				value="#{controladorJuego.juegos}" toggleable="true">
+				<p:column headerText="Nombre">
+					<h:outputText value="#{juego.nombre}" />
+				</p:column>
+
+				<p:column headerText="Género">
+					<h:outputText value="#{juego.genero}" />
+				</p:column>
+
+				<p:column headerText="Comentario">
+					<h:outputText value="#{juego.comentario}" />
+				</p:column>
+
+				<p:column headerText="Puntuación">
+					<h:outputText value="#{juego.puntuacion}" />
+				</p:column>
+
+				<p:column headerText="Precio">
+					<h:outputText value="#{juego.precio}" />
+				</p:column>
+			</p:dataTable>
+		</p:fieldset>
+	</h:form>
+</h:body>
+</html>

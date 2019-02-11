@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>JSF tutorial</title>
+</h:head>
+<h:body>
+	<h2>ConvertNumber Example</h2>
+	<table border="1" cellspacing="2" cellpadding="2">
+		<tr>
+			<th>Parameter</th>
+			<th>Value Passed</th>
+			<th>Output</th>
+		</tr>
+		<tr>
+			<td>minFractionDigits="2"</td>
+			<td>100.12345</td>
+			<td><h:outputText value="100.12345">
+					<f:convertNumber minFractionDigits="2" />
+				</h:outputText></td>
+		</tr>
+		<tr>
+			<td>pattern="#000.000"</td>
+			<td>100.12345</td>
+			<td><h:outputText value="100.12345">
+					<f:convertNumber pattern="#000.000" />
+				</h:outputText></td>
+		</tr>
+		<tr>
+			<td>currencySymbol="$"</td>
+			<td>100$</td>
+			<td><h:outputText value="100$">
+					<f:convertNumber currencySymbol="$" type="currency" />
+				</h:outputText></td>
+		</tr>
+		<tr>
+			<td>currencySymbol="€"</td>
+			<td>100€</td>
+			<td><h:outputText value="100 €">
+					<f:convertNumber currencySymbol="€" type="currency" />
+				</h:outputText></td>
+		</tr>
+		<tr>
+			<td>currencySymbol="€"</td>
+			<td>100€</td>
+			<td><h:outputText value="100€">
+					<f:convertNumber currencySymbol="€" type="currency" pattern="#€" />
+				</h:outputText></td>
+		</tr>
+		<tr>
+			<td>type="percent"</td>
+			<td>100.12345%</td>
+			<td><h:outputText value="100.12345%">
+					<f:convertNumber type="percent" />
+				</h:outputText></td>
+		</tr>
+	</table>
+
+	<hr />
+
+	<h2>ConvertDateTime Example</h2>
+
+	<h:outputText value="12-01-2012">
+		<f:convertDateTime pattern="dd-mm-yyyy" />
+	</h:outputText>
+	<br />
+	<h:outputText value="12/01/2012">
+		<f:convertDateTime pattern="dd/mm/yyyy" />
+	</h:outputText>
+	<br />
+	<h:outputText value="12/01/2012 12:55">
+		<f:convertDateTime pattern="dd/MM/yyyy hh:mm" />
+	</h:outputText>
+	<br />
+	<br />
+	<h:form>
+		<h:inputText id="dateInput" value="#{userData.date}" label="Date">
+			<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" timeZone="GMT" />
+		</h:inputText>
+		<h:commandButton value="submit" action="result" />
+	</h:form>
+
+	<hr />
+
+	<h2>CustomConverter Example</h2>
+	<h:form>
+		<h:inputText id="emailImput" value="#{userData.email}" label="Email">
+			<f:converter converterId="com.mkyong.EmailConversor" />
+		</h:inputText>
+		<h:commandButton value="submit" action="result"/>
+		<h:message for="emailImput" style="color:red" />
+	</h:form>
+</h:body>
+</html>
